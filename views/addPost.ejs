@@ -1,0 +1,83 @@
+<%- include('partials/_header') -%>
+
+<body>
+
+  <%- include('partials/_navigation') -%>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Yeni Post</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form method="POST" action="/posts" novalidate enctype="multipart/form-data">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Başlık</label>
+              <input type="text" class="form-control" placeholder="Başlık" name="title" id="title" required data-validation-required-message="Lütfen Bir Başlık Giriniz.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Problem Tanımı</label>
+              <textarea rows="5" class="form-control" placeholder="Problem Tanımı" name="text" id="text" required data-validation-required-message="Lütfen Problemi Tanımlayınız."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Resim</label>
+              <h6 >Resim</h6>
+              <input type="file" name="image" class="form-contral-file" id="image">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <!--
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Post File</label>
+              <input type="file" name="file" class="form-contral-file" id="file">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          -->
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Oluşturan Kişi İsmi</label>
+              <textarea rows="5" class="form-control" placeholder="Oluşturan Kişi İsmi" name="whoCreated" id="whoCreated" required data-validation-required-message="Lütfen Oluşturan Kişi İsmini Giriniz."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendPostButton">Gönder</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <%- include('partials/_footer') -%>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+</body>
+
+</html>

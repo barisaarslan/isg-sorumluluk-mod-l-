@@ -1,0 +1,103 @@
+<%- include('partials/_header') -%>
+
+
+<head>
+   <script src="/socket.io/socket.io.js"></script>
+  
+  
+</head>
+
+
+<body>
+
+  <%- include('partials/_navigation') -%>
+
+  <script>
+    var socket = io();
+  </script>
+  
+
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>İş Sağlığı ve Güvenliği Modülü</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        
+        
+        <% for(let i = 0; i < posts.length; i++){ %>
+        <hr>
+        <div class="post-preview">
+            <img src="uploads/<%= posts[i].image %>" width="600">
+            <br>
+            <h2 class="post-title">
+              <%= posts[i].title %>
+            </h2>
+            <h5 class="post-subtitle">
+              <%= posts[i].text %>
+            </h5>
+          </a>
+          <p class="post-meta"><%= posts[i].whoCreated %> tarafından
+            <%= posts[i].dateCreated %> tarihinde oluşturuldu.</p>
+
+            <form action="/deletePost/<%= posts[i]._id %>" method="post">
+              <button type="submit" class="btn btn-primary">Postu Sil</button>
+            </form>
+
+            
+              
+           
+            <% for(let j = 0; j < comments.length; j++){ %>
+              <% if(comments[j].postId == posts[i]._id){ %>
+                <div class="post-preview">
+                <p><%=comments[j].text%></p>
+                <p class="post-meta"><%= comments[j].name %> tarafından
+                  <%= comments[j].dateCreated %> tarihinde yapılan yorum.</p>
+              </div>
+             <% } %>
+            <% } %>
+
+            <form action="/newComment/<%= posts[i]._id %>" method="post">
+              <textarea rows="5" class="form-control" placeholder="Yorum İçeriği" name="text" id="text" required data-validation-required-message="Lütfen Yorum İçeriği Giriniz."></textarea>
+              <br>
+              <input type="text" class="form-control" placeholder="Yorum Sahibi" name="name" id="name" required data-validation-required-message="Lütfen Yorum Sahibinin İsmini Giriniz.">
+              <br>
+              <button type="submit" class="btn btn-primary">Yorum Yap</button>
+            </form>
+        </div>
+        <% } %>
+        
+       
+        <!-- 
+        Pager  
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+       -->
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  
+  <%- include('partials/_footer') -%>
+
+
+</body>
+
+
+</html>
